@@ -1,0 +1,429 @@
+@import './index.css';
+@import './variables.css';
+
+/*
+LAYOUT CLASSES
+*/
+
+
+.layout {
+    margin: 3rem;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+  
+[class*="col-"] {
+    float: left;
+    width: 100%;
+}
+  
+@media only screen and (min-width: 600px) {
+    .col-s-1 {width: 8.33%;}
+    .col-s-2 {width: 16.66%;}
+    .col-s-3 {width: 25%;}
+    .col-s-4 {width: 33.33%;}
+    .col-s-5 {width: 41.66%;}
+    .col-s-6 {width: 50%;}
+    .col-s-7 {width: 58.33%;}
+    .col-s-8 {width: 66.66%;}
+    .col-s-9 {width: 75%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100%;}
+    body {
+        font-size: 17px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+    body {
+        font-size: 18px;
+    }
+}
+
+.flex-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: center;
+}
+
+.inner-container {
+    background-color: white;
+    border-radius: 5px; 
+    padding-inline: 2rem;
+    padding-bottom: 2rem;
+    margin-inline: 0.5rem;
+    margin-block: 1rem;
+}
+
+.inline-layout {
+    display: inline;
+}
+
+.title-with-button-layout {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.currency-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Set width and height to the same value for a square */
+    height: 40px;
+    border-radius: 5px;
+    font-size: 1.5em; /* Adjust size of currency symbol */
+    color: var(--risd-blue);
+    background-color: var(--ghost-white);
+    box-sizing: border-box; /* Include border in element's total width and height */
+}
+
+.stats-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.stat {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Set width and height to the same value for a square */
+    height: 40px;
+    border-radius: 5px;
+    font-size: 1.5em; /* Adjust size of currency symbol */
+    color: var(--risd-blue);
+    box-sizing: border-box; /* Include border in element's total width and height */
+    justify-self: flex-end;
+    background-color: white;
+}
+
+.icon-button:hover{
+    background-color: var(--ghost-white);
+}
+
+.eximport-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Set width and height to the same value for a square */
+    height: 40px;
+    border-radius: 5px;
+    font-size: 1.5em; /* Adjust size of currency symbol */
+    box-sizing: border-box; /* Include border in element's total width and height */
+    justify-self: flex-end;
+    background-color: var(--risd-blue);
+}
+
+.eximport-button:hover{
+    background-color: var(--sunset);
+}
+
+.button-cluster {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 0.5rem;
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-bar h5 {
+    margin: 0;
+    padding: 0;
+}
+
+.filter-item {
+    width: 100%;
+    margin-inline: 0rem;
+}
+
+.compartment {
+    margin-top: 3rem;
+}
+
+.flex-left {
+    justify-content: flex-start;
+}
+
+.flex-left span {
+    margin-right: 1rem;
+}
+
+.modal-layout {
+    display: inline-block;
+}
+
+.form-layout {
+    display: block;
+}
+
+.form-layout * {
+    margin-block: 0.5rem;
+}
+
+.form-layout h5 {
+    padding: 0;
+    padding-top: 1rem;
+    margin: 0;
+}
+
+.no-registers-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-block: 1.5rem;
+}
+
+/*
+STYLE CLASSES
+*/
+
+.edit-currency {
+    border: 3px dotted var(--risd-blue);
+}
+
+.currency-value {
+    font-size: 1.5em; /* Adjust size of currency symbol */
+    margin-left: 0.5rem;
+}
+
+.stat-value{
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.debt {
+    color: var(--active-red);
+    background-color: var(--ghost-red);
+}
+
+.outcome {
+    color: var(--active-red);
+}
+
+.favor {
+    color: var(--active-green);
+    background-color: var(--ghost-green);
+}
+
+.neutral {
+    color: var(--sunset);
+}
+
+.icon {
+    width: auto; /* Set width and height to the same value for a square */
+    height: 35px;
+}
+
+.icon-small {
+    width: auto; /* Set width and height to the same value for a square */
+    height: 25px;
+}
+
+.categories-list ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.categories-list li {
+    padding-block: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.categories-list .icon-button {
+    margin-left: 0.2rem;
+}
+
+.expense-list ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.expense-list li{
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+
+}
+
+.expense-category {
+    font-size: 0.7rem;
+}
+
+.modal-container {
+    display: none;
+    top: 0;
+	left: 0;
+	opacity: 1;
+	width: 100%;
+	height: 100%;
+	z-index: var(--modal-overlay-z-index);
+	max-height: 100vh;
+	position: fixed;
+	overflow: auto;
+	transform: translateZ(0);
+	background-color: rgba(0,0,0, 0.5);
+}
+
+.modal {
+    min-width: 400px;
+	position: fixed;
+    background-color: var(--white);
+	z-index: var(--modal-z-index);
+	padding: 4rem 5rem;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	height: auto;
+}
+
+.close-button {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+.close-button:hover {
+    background-color: var(--active-red);
+    color: white;
+}
+
+.submit-btn {
+    background-color: var(--risd-blue);
+    color: white;
+    padding: 0.7rem;
+    border-radius: 5px;
+    border: 0;
+    font-size: 1rem;
+}
+
+.input {
+    padding: 0.8rem;
+    overflow: visible;
+    background-color: var(--ghost-white);
+    border: 0;
+    border-radius: 5px;
+}
+
+.huge-input-width {
+    min-width: 300px;
+}
+
+.large-input-width {
+    min-width: 250px;
+}
+
+.medium-input-width {
+    min-width: 200px;
+}
+
+.small-input-width {
+    min-width: 150px;
+}
+
+.nano-input-width {
+    min-width: 50px;
+}
+
+.subtitle {
+    font-size: 0.8rem;
+    color: var(--grey);
+}
+
+.currency-select {
+    color: var(--risd-blue);
+    background-color: var(--ghost-white);
+    width: 50px; /* Set width and height to the same value for a square */
+    height: 40px;
+    border-radius: 5px;
+    font-size: 1.5em; /* Adjust size of currency symbol */
+    color: var(--risd-blue);
+    background-color: var(--ghost-white);
+    box-sizing: border-box; /* Include border in element's total width and height */
+    padding-left: 0.5rem;
+    border: 0;
+}
+
+.currency-amount-budget {
+    border: 0;
+    font-size: 1.5em; /* Adjust size of currency symbol */
+    margin-left: 0.5rem;
+}
+
+.currency-amount-form {
+    min-width: 190px;
+    margin-left: 0.5rem;
+}
+
+.file-btn {
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+ 
+    /* IE 5-7 */
+    filter: alpha(opacity=0);
+  
+    /* Netscape or and older firefox browsers */
+    -moz-opacity: 0.0;
+ 
+    /* older Safari browsers */
+    -khtml-opacity: 0.0;
+ 
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: inherit;
+    height: inherit;
+    display: none;
+}

@@ -2,9 +2,236 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
 
+    <header>
+        <div class="title-with-button-layout">
+            <div>
+                <h1><strong>Monthly Expense Tracker</strong></h1>
+            </div>
+            <div class="button-cluster">
+                <span class="eximport-button" onclick="exportData()">
+                    <img class="icon-small" src="./images/export.svg"/>
+                </span>
+                <span>
+                    <label for="import-btn" class="eximport-button">
+                        <img class="icon-small" src="./images/import.svg"/>
+                    </label>
+                    <input id="import-btn" class="file-btn" type="file" onchange="importData()">
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout row">
+        <div class="col-s-4 col-4">
+            <div class="inner-container">
+                <h2>My budget</h2>
+                <div class="flex-container">
+                    <div>
+                        <select id="budget-currency-select" class="currency-select" onchange="updateBudget()"></select>
+                    </div>
+                    <input id="budget-amount" class="currency-amount-budget nano-input-width" type="text" placeholder="0.00" onchange="updateBudget()">
+                </div>
+
+            </div>
+            <div class="inner-container">
+                <div class="title-with-button-layout">
+                    <h2>Categories</h2>
+                    <span class="icon-button" onclick="showModal('add-category-modal')">
+                        <img class="icon" src="./images/add.svg"/>
+                    </span>
+                </div>
+                <div class="categories-list">
+                    <ul id="categories-list"></ul>
+                </div>
+            </div>  
+        </div>
+
+
+        <div class="col-s-8 col-8">
+            <div class="inner-container">
+                <div>
+                    <h2>My balance</h2>
+                    <div class="stats-layout row">
+                        <div class="col-3 col-s-3">
+                            <div>
+                                <h5>Budget left</h5>
+                                <div class="flex-container">
+                                    <span id="budget-left-icon" class="currency-symbol favor">
+                                        <img id="budget-left-img" class="icon" src="./images/savings.svg">
+                                    </span>
+                                    <span id="budget-left-amount" class="currency-value">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 col-s-3">
+                            <div>
+                                <h5>Amount spent</h5>
+                                <div class="flex-container">
+                                    <span id="amount-spent-icon class="currency-symbol debt">
+                                        <img class="icon" src="./images/money-spent.svg">
+                                    </span>
+                                    <span id="amount-spent" class="currency-value">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 col-s-3">
+                            <div>
+                                <h5>Category most spent on</h5>
+                                <div class="flex-container">
+                                    <p id="category-most-spent-on" class="stat-value">N/A</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+
+                <div class="compartment">
+                    <div class="title-with-button-layout flex-left">
+                        <span>
+                            <h2>Expenses</h2>
+                        </span>
+                        <span class="icon-button" onclick="showModal('add-expense-modal')">
+                            <img class="icon" src="./images/add.svg"/>
+                        </span>
+                    </div>
+                    <div class="filter-bar">
+                        <div>
+                            <h5>Name</h5>
+                            <input id="expense-name-filter" type="text" class="input large-input-width" placeholder="Write the name of the expense" onchange="retrieveExpenses()">
+                        </div>
+                        <div>
+                            <h5>Date</h5>
+                            <input id="expense-date-filter" class="input small-input-width" type="date" onchange="retrieveExpenses()">
+                        </div>
+                        <div>
+                            <h5>Category</h5>
+                            <select id="expense-category-filter" class="input small-input-width" onchange="retrieveExpenses()"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="expense-list">
+                    <ul id="expenses-list"></ul>
+                </div>
+
+                <div class="compartment">
+                    <h2>Expense summary</h2>
+                    <div>
+                        <table id="expenses-summary-table"></table>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+    <div id="add-category-modal" class="modal-container">
+        <div class="modal">
+            <h1>Add Category</h1>
+            <span class="close-button" onclick="hideModal('add-category-modal')">Close</span>
+            <div class="form-layout">
+                <input id="add-category-name" class="input large-input-width" type="text" placeholder="Category name" required>
+                <div>
+                    <input class="submit-btn" type="submit" onclick="insertCategory()" value="Add Category">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="edit-category-modal" class="modal-container">
+        <div class="modal">
+            <h1>Edit Category</h1>
+            <span class="close-button" onclick="hideModal('edit-category-modal')">Close</span>
+            <div class="form-layout">
+                <input class="input large-input-width" id="edit-category-name" type="text" placeholder="Category name">
+                <span id="edit-category-id" hidden></span>
+                <div>
+                    <input class="submit-btn" type="submit" onclick="updateCategory()" value="Edit category">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="add-expense-modal" class="modal-container">
+        <div class="modal">
+            <h1>Add expense</h1>
+            <span class="close-button" onclick="hideModal('add-expense-modal')">Close</span>
+            <div class="form-layout">
+                <div>
+                    <h5>Name</h5>
+                <input class="input large-input-width" id="add-expense-name" type="text" placeholder="Expense name">
+                </div>
+                <div>
+                    <h5>Category</h5>
+                    <select id="add-expense-category" class="input large-input-width"></select>
+                </div>
+                <div>
+                    <h5>Date</h5>
+                    <input id="add-expense-date" class="input large-input-width" type="date">
+                </div>
+                <div>
+                    <h5>Amount</h5>
+                    <div class="flex-container">
+                        <select id="add-expense-currency" class="currency-select"></select>
+                        <input id="add-expense-amount" class="input currency-amount-form" type="text" placeholder="0.00">
+                    </div>
+                </div>
+                <div>
+                    <input class="submit-btn" type="submit" onclick="addExpense()" value="Add expense">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="edit-expense-modal" class="modal-container">
+        <div class="modal">
+            <h1>Edit expense</h1>
+            <span class="close-button" onclick="hideModal('edit-expense-modal')">Close</span>
+            <span id="edit-expense-id" hidden></span>
+            <div class="form-layout">
+                <div>
+                    <h5>Name</h5>
+                <input class="input large-input-width" id="edit-expense-name" type="text" placeholder="Expense name">
+                </div>
+                <div>
+                    <h5>Category</h5>
+                    <select id="edit-expense-category" class="input large-input-width"></select>
+                </div>
+                <div>
+                    <h5>Date</h5>
+                    <input id="edit-expense-date" class="input large-input-width" type="date">
+                </div>
+                <div>
+                    <h5>Amount</h5>
+                    <div class="flex-container">
+                        <select id="edit-expense-currency" class="currency-select"></select>
+                        <input id="edit-expense-amount" class="input currency-amount-form" type="text" placeholder="0.00">
+                    </div>
+                </div>
+                <div>
+                    <input class="submit-btn" type="submit" onclick="updateExpense()" value="Edit expense">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./scripts/utils/import_export_utils.js"></script>
+    <script type="text/javascript" src="./scripts/utils/validation_utils.js"></script>
+    <script type="text/javascript" src="./scripts/utils/formatter_utils.js"></script>
+    <script type="text/javascript" src="./scripts/utils/components_utils.js"></script>
+    <script type="text/javascript" src="./scripts/utils/html_utils.js"></script>
+    <script type="text/javascript" src="./scripts/utils/local_storage_util.js"></script>
+    <script type="text/javascript" src="./scripts/queries/currencies_queries.js"></script>
+    <script type="text/javascript" src="./scripts/queries/budget_queries.js"></script>
+    <script type="text/javascript" src="./scripts/queries/expenses_queries.js"></script>
+    <script type="text/javascript" src="./scripts/queries/categories_queries.js"></script>
+    <script type="text/javascript" src="./scripts/controllers/currencies_controllers.js"></script>
+    <script type="text/javascript" src="./scripts/controllers/budget_controllers.js"></script>
+    <script type="text/javascript" src="./scripts/controllers/categories_controllers.js"></script>
+    <script type="text/javascript" src="./scripts/controllers/expenses_controllers.js"></script>
+    <script type="text/javascript" src="./scripts/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,85 @@
+
+* {
+    box-sizing: border-box;
+}
+
+b, strong {
+    font-weight: 700;
+}
+  
+header {
+	width: 100%;
+    text-align: left;
+    background-color: var(--risd-blue);
+    color: white;
+    padding-inline: 4em;
+}
+
+
+
+html {
+    height: 100%;
+    box-sizing: border-box; /* Force browser to use any border, padding or margin to calculate the size of elements */
+    font-size: 100%;
+}
+  
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+  
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: var(--font-family-main);
+    color: var(--grey-darker);
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    background-color: var(--ghost-white);
+}
+  
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+    padding-block: 1em;
+    font-weight: 900;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 0;
+    text-align: left;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+}
+
+th {
+    background-color: var(--risd-blue);
+    color: white;
+    padding: 1rem;
+}
+
+tr:nth-child(odd) {
+    background-color: var(--ghost-white);
+    color: var(--risd-blue)
+}
+
+
+
+
+hr {
+    margin-inline: 0.5rem;
+    border-color: var(--ghost-white);
+}

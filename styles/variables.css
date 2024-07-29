@@ -1,0 +1,36 @@
+/* Global variables */
+
+:root {
+    /* Variable declarations */
+    /* COLORS */
+    --black: #000;
+    --black-with-opacity: rgba(0, 0, 0, 0.4);
+    --grey: #a3a3a3;
+    --grey-dark: #888;
+    --grey-darker: #3b3b3b;
+    --grey-dark-secondary: #00000020;
+    --grey-lighter: #d1d1d1;
+    --orange: #E2350D;
+    --orange-darker: #962309;
+    --white: #FFF;
+    --yellow: #FFC300;
+    --green: #137e13;
+    --red: #e90d0d;
+    --pale-azure: #9cdbffff;
+    --risd-blue: #435eefff;
+    --ebony: #646659ff;
+    --sunset: #fdcc8dff;
+    --federal-blue: #150a57ff;
+    --ghost-red: #fbdcdfff;
+    --active-red: #fa4111ff;
+    --ghost-green: #e9fcf6ff;
+    --active-green: #11a94cff;
+    --ghost-white: #e6e8f0ff;
+
+    /* SPACING */
+    --home-margin: 8rem;
+
+    /* MODALS */
+    --modal-overlay-z-index: 1000;
+    --modal-z-index: calc(var(--modal-overlay-z-index) + 1);
+}
